@@ -1,16 +1,18 @@
 ---
 import { PROJECTS } from '../data/portfolio';
 import ProjectCard from './ProjectCard.astro';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="section" id="work">
 	<div class="wrap">
 		<header class="section-hd">
-			<span class="eyebrow">Selected work</span>
-			<h2 class="serif section-h">Two projects, <em>roughly chosen</em>.</h2>
-			<p class="section-sub">
-				Lo que mejor representa cómo trabajo cuando no me está mirando un cliente. Ambos open source.
-			</p>
+			<span class="eyebrow">{t('workEyebrow')}</span>
+			<h2 class="serif section-h" set:html={t('workTitle')} />
+			<p class="section-sub">{t('workSub')}</p>
 		</header>
 
 		<div class="proj-grid">

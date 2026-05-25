@@ -1,23 +1,20 @@
 ---
 import Reveal from './Reveal.astro';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="now" id="now">
 	<div class="wrap now-grid">
 		<div class="now-label">
-			<span class="eyebrow">Now</span>
-			<div class="micro now-when">Updated 14 May</div>
+			<span class="eyebrow">{t('nowEyebrow')}</span>
+			<div class="micro now-when">{t('nowUpdated')}</div>
 		</div>
 		<div class="now-body">
-			<p class="serif">
-				Mid-rewrite of an analytics ingestion path that, on a good day, eats
-				eleven thousand events a second and tells nobody about it.
-			</p>
-			<p>
-				Otherwise: reading Hillel Wayne's <em>Logic for Programmers</em>,
-				cooking my way through a stubborn loaf of rye, and trying to learn
-				enough Rust to feel mildly dangerous.
-			</p>
+			<p class="serif">{t('nowP1')}</p>
+			<p set:html={t('nowP2')} />
 		</div>
 	</div>
 </section>

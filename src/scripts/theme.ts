@@ -23,7 +23,11 @@ export function initThemeToggle() {
 			const theme = toggleTheme();
 			btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
 			const label = btn.querySelector('.theme-label');
-			if (label) label.textContent = theme === 'dark' ? 'dark' : 'light';
+			if (label) {
+				const light = label.getAttribute('data-theme-light') ?? 'light';
+				const dark = label.getAttribute('data-theme-dark') ?? 'dark';
+				label.textContent = theme === 'dark' ? dark : light;
+			}
 		});
 	});
 }

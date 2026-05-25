@@ -1,11 +1,15 @@
 ---
 import Reveal from './Reveal.astro';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="hero" id="top">
 	<div class="wrap">
 		<Reveal delay={0}>
-			<span class="eyebrow">Portfolio · MMXXVI</span>
+			<span class="eyebrow">{t('heroEyebrow')}</span>
 		</Reveal>
 
 		<h1 class="hero-title serif">
@@ -24,22 +28,20 @@ import Reveal from './Reveal.astro';
 		</h1>
 
 		<Reveal delay={180} as="p" class="hero-lede">
-			Senior fullstack developer. I build calm, well-mannered software —
-			mostly in TypeScript, occasionally in Go, always with the assumption
-			that someone else will read it on a Friday at 5pm.
+			{t('heroLede')}
 		</Reveal>
 
 		<Reveal delay={280} class="hero-meta">
 			<span class="status">
 				<i class="pulse"></i>
-				Open to senior / staff roles · remote (GMT-5 ± 3)
+				{t('heroStatus')}
 			</span>
-			<span class="hero-loc mono">~/ Mexico City</span>
+			<span class="hero-loc mono">{t('heroLoc')}</span>
 		</Reveal>
 
 		<Reveal delay={380} class="hero-cta">
-			<a href="#work" class="btn primary magnetic">See selected work →</a>
-			<a href="#contact" class="btn magnetic">Get in touch</a>
+			<a href="#work" class="btn primary magnetic">{t('heroCtaWork')}</a>
+			<a href="#contact" class="btn magnetic">{t('heroCtaContact')}</a>
 		</Reveal>
 	</div>
 </section>

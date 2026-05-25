@@ -1,13 +1,17 @@
 ---
 import { EXPERIENCE } from '../data/portfolio';
 import Reveal from './Reveal.astro';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="section experience" id="experience">
 	<div class="wrap">
 		<header class="section-hd">
-			<span class="eyebrow">Experience</span>
-			<h2 class="serif section-h">A decade, <em>roughly accounted for</em>.</h2>
+			<span class="eyebrow">{t('experienceEyebrow')}</span>
+			<h2 class="serif section-h" set:html={t('experienceTitle')} />
 		</header>
 		<ol class="xp">
 			{
@@ -19,7 +23,7 @@ import Reveal from './Reveal.astro';
 								{e.role} <span class="xp-at">·</span>{' '}
 								<span class="xp-co">{e.company}</span>
 							</h3>
-							<p class="xp-note">{e.note}</p>
+							<p class="xp-note">{e.note[locale]}</p>
 						</div>
 					</Reveal>
 				))

@@ -1,4 +1,11 @@
-<button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">
+---
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+---
+
+<button class="theme-toggle" type="button" data-theme-toggle aria-label={t('themeToggle')} aria-pressed="false">
 	<span class="theme-icon" aria-hidden="true">
 		<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 			<circle cx="12" cy="12" r="4"></circle>
@@ -9,14 +16,18 @@
 			<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
 		</svg>
 	</span>
-	<span class="micro theme-label">light</span>
+	<span class="micro theme-label" data-theme-light={t('themeLight')} data-theme-dark={t('themeDark')}>
+		{t('themeLight')}
+	</span>
 </button>
 
 <script>
 	const updateLabel = () => {
 		const theme = document.documentElement.dataset.theme ?? 'light';
 		document.querySelectorAll('.theme-label').forEach((el) => {
-			el.textContent = theme === 'dark' ? 'dark' : 'light';
+			const light = el.getAttribute('data-theme-light') ?? 'light';
+			const dark = el.getAttribute('data-theme-dark') ?? 'dark';
+			el.textContent = theme === 'dark' ? dark : light;
 		});
 		document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
 			btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');

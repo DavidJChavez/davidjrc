@@ -1,17 +1,16 @@
 ---
 import Reveal from './Reveal.astro';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="contact" id="contact">
 	<div class="wrap">
-		<Reveal as="h2" class="contact-h serif">
-			Let's <em>build</em> something.
-		</Reveal>
+		<Reveal as="h2" class="contact-h serif" set:html={t('contactTitle')} />
 		<Reveal delay={120} class="contact-body">
-			<p>
-				I'm taking on senior / staff fullstack roles starting Q3 2026,
-				and the occasional smaller advisory engagement.
-			</p>
+			<p>{t('contactBody')}</p>
 			<a href="mailto:hello@davidjrc.com" class="contact-mail serif">
 				hello@davidjrc.com
 			</a>
@@ -19,15 +18,11 @@ import Reveal from './Reveal.astro';
 		<Reveal delay={200} class="contact-links">
 			<a href="https://github.com/DavidJChavez" target="_blank" rel="noreferrer">GitHub</a>
 			<span class="dot">·</span>
-			<a href="#">LinkedIn</a>
-			<span class="dot">·</span>
-			<a href="#">Twitter</a>
-			<span class="dot">·</span>
-			<a href="#">Read.cv</a>
+			<a href="https://www.linkedin.com/in/davidjchavez98/" target="_blank" rel="noreferrer">LinkedIn</a>
 		</Reveal>
 		<div class="foot">
 			<span class="mono">© 2026 · davidjrc.com</span>
-			<span class="mono">Built quietly, in Astro.</span>
+			<span class="mono">{t('contactFooterBuilt')}</span>
 		</div>
 	</div>
 </section>

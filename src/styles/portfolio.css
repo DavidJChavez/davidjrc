@@ -173,6 +173,46 @@ body[data-density="comfy"] {
 	color: var(--accent);
 }
 
+.nav-actions {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.lang-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 12px;
+}
+
+.lang-link {
+	color: var(--ink-2);
+	padding: 6px 4px;
+	transition: color 0.2s ease;
+}
+
+.lang-link[aria-current="page"] {
+	color: var(--ink);
+	font-weight: 500;
+}
+
+.lang-link:hover {
+	color: var(--ink);
+}
+
+.lang-sep {
+	color: var(--line);
+	user-select: none;
+}
+
+.writing-soon {
+	max-width: 42ch;
+	color: var(--ink-2);
+	font-size: 15px;
+	line-height: 1.65;
+}
+
 .theme-icon {
 	position: relative;
 	width: 16px;

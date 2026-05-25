@@ -1,31 +1,19 @@
 ---
-import { WRITING } from '../data/portfolio';
 import Reveal from './Reveal.astro';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <section class="section" id="writing">
 	<div class="wrap">
 		<header class="section-hd">
-			<span class="eyebrow">Writing</span>
-			<h2 class="serif section-h">Notes, <em>sometimes finished</em>.</h2>
+			<span class="eyebrow">{t('writingEyebrow')}</span>
+			<h2 class="serif section-h" set:html={t('writingTitle')} />
 		</header>
-		<ul class="writing">
-			{
-				WRITING.map((w, i) => (
-					<Reveal delay={i * 60} as="li">
-						<a href="#" class="w-row">
-							<span class="w-date mono">{w.date}</span>
-							<div class="w-body">
-								<h3 class="serif w-title">{w.title}</h3>
-								<p class="w-ex">{w.excerpt}</p>
-							</div>
-							<span class="w-read mono">{w.read}</span>
-							<span class="w-arrow">→</span>
-						</a>
-					</Reveal>
-				))
-			}
-		</ul>
-		<a href="#" class="writing-all mono">all writing →</a>
+		<Reveal as="p" class="writing-soon">
+			{t('writingComingSoon')}
+		</Reveal>
 	</div>
 </section>

@@ -1,0 +1,43 @@
+---
+import { alternateLocale, getLocale, localizedPath, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const enHref = localizedPath('/', 'en');
+const esHref = localizedPath('/', 'es');
+---
+
+<div class="lang-toggle" aria-label={t('langSwitch')}>
+	<a
+		href={enHref}
+		class="lang-link"
+		data-lang-link
+		aria-current={locale === 'en' ? 'page' : undefined}
+	>
+		EN
+	</a>
+	<span class="lang-sep" aria-hidden="true">·</span>
+	<a
+		href={esHref}
+		class="lang-link"
+		data-lang-link
+		aria-current={locale === 'es' ? 'page' : undefined}
+	>
+		ES
+	</a>
+</div>
+
+<script>
+	document.querySelectorAll('[data-lang-link]').forEach((link) => {
+		link.addEventListener('click', (event) => {
+			const href = link.getAttribute('href');
+			if (!href) return;
+
+			const hash = window.location.hash;
+			if (!hash) return;
+
+			event.preventDefault();
+			window.location.href = `${href}${hash}`;
+		});
+	});
+</script>

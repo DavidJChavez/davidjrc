@@ -2,6 +2,7 @@
 import type { Project } from '../data/portfolio';
 import ProjectPreview from './ProjectPreview.astro';
 import Reveal from './Reveal.astro';
+import { getLocale } from '../i18n';
 
 interface Props {
 	project: Project;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 const { project, index } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 const isExternal = project.href.startsWith('http');
 ---
 
@@ -24,9 +26,9 @@ const isExternal = project.href.startsWith('http');
 			<span class="proj-arrow" aria-hidden="true">↗</span>
 		</div>
 		<p class="proj-tag serif">
-			<em>{project.tagline}</em>
+			<em>{project.tagline[locale]}</em>
 		</p>
-		<p class="proj-body-copy">{project.body}</p>
+		<p class="proj-body-copy">{project.body[locale]}</p>
 		<div class="proj-foot">
 			<ul class="proj-stack">
 				{project.stack.map((s) => <li class="mono">{s}</li>)}

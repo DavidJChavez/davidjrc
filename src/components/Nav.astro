@@ -1,21 +1,29 @@
 ---
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import LangToggle from './LangToggle.astro';
 import { NAV_LINKS } from '../data/portfolio';
+import { getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 ---
 
 <header class="nav">
 	<div class="wrap nav-inner">
-		<a href="#top" class="nav-logo" aria-label="David Rodriguez — inicio">
+		<a href="#top" class="nav-logo" aria-label={t('navHome')}>
 			<Logo />
 		</a>
-		<nav class="nav-links" aria-label="Principal">
+		<nav class="nav-links" aria-label={t('navLabel')}>
 			{
 				NAV_LINKS.map((link) => (
-					<a href={link.href}>{link.label}</a>
+					<a href={link.href}>{t(link.key)}</a>
 				))
 			}
 		</nav>
-		<ThemeToggle />
+		<div class="nav-actions">
+			<LangToggle />
+			<ThemeToggle />
+		</div>
 	</div>
 </header>
