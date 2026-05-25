@@ -1,0 +1,20 @@
+---
+import { PROJECTS } from '../data/portfolio';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section class="section" id="work">
+	<div class="wrap">
+		<header class="section-hd">
+			<span class="eyebrow">Selected work</span>
+			<h2 class="serif section-h">Two projects, <em>roughly chosen</em>.</h2>
+			<p class="section-sub">
+				Lo que mejor representa cómo trabajo cuando no me está mirando un cliente. Ambos open source.
+			</p>
+		</header>
+
+		<div class="proj-grid">
+			{PROJECTS.map((project, i) => <ProjectCard project={project} index={i} />)}
+		</div>
+	</div>
+</section>

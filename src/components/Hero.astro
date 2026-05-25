@@ -1,0 +1,45 @@
+---
+import Reveal from './Reveal.astro';
+---
+
+<section class="hero" id="top">
+	<div class="wrap">
+		<Reveal delay={0}>
+			<span class="eyebrow">Portfolio · MMXXVI</span>
+		</Reveal>
+
+		<h1 class="hero-title serif">
+			{
+				'David '.split('').map((char) => (
+					<span class="hero-letter">{char === ' ' ? '\u00A0' : char}</span>
+				))
+			}
+			<em>
+				{
+					'Rodriguez'.split('').map((char) => (
+						<span class="hero-letter">{char}</span>
+					))
+				}
+			</em>
+		</h1>
+
+		<Reveal delay={180} as="p" class="hero-lede">
+			Senior fullstack developer. I build calm, well-mannered software —
+			mostly in TypeScript, occasionally in Go, always with the assumption
+			that someone else will read it on a Friday at 5pm.
+		</Reveal>
+
+		<Reveal delay={280} class="hero-meta">
+			<span class="status">
+				<i class="pulse"></i>
+				Open to senior / staff roles · remote (GMT-5 ± 3)
+			</span>
+			<span class="hero-loc mono">~/ Mexico City</span>
+		</Reveal>
+
+		<Reveal delay={380} class="hero-cta">
+			<a href="#work" class="btn primary magnetic">See selected work →</a>
+			<a href="#contact" class="btn magnetic">Get in touch</a>
+		</Reveal>
+	</div>
+</section>

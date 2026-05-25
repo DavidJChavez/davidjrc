@@ -1,0 +1,29 @@
+---
+import { EXPERIENCE } from '../data/portfolio';
+import Reveal from './Reveal.astro';
+---
+
+<section class="section experience" id="experience">
+	<div class="wrap">
+		<header class="section-hd">
+			<span class="eyebrow">Experience</span>
+			<h2 class="serif section-h">A decade, <em>roughly accounted for</em>.</h2>
+		</header>
+		<ol class="xp">
+			{
+				EXPERIENCE.map((e, i) => (
+					<Reveal delay={i * 50} as="li" class="xp-row">
+						<span class="xp-year mono">{e.year}</span>
+						<div class="xp-body">
+							<h3 class="serif xp-role">
+								{e.role} <span class="xp-at">·</span>{' '}
+								<span class="xp-co">{e.company}</span>
+							</h3>
+							<p class="xp-note">{e.note}</p>
+						</div>
+					</Reveal>
+				))
+			}
+		</ol>
+	</div>
+</section>

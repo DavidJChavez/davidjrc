@@ -1,0 +1,33 @@
+---
+import Reveal from './Reveal.astro';
+---
+
+<section class="contact" id="contact">
+	<div class="wrap">
+		<Reveal as="h2" class="contact-h serif">
+			Let's <em>build</em> something.
+		</Reveal>
+		<Reveal delay={120} class="contact-body">
+			<p>
+				I'm taking on senior / staff fullstack roles starting Q3 2026,
+				and the occasional smaller advisory engagement.
+			</p>
+			<a href="mailto:hello@davidjrc.com" class="contact-mail serif">
+				hello@davidjrc.com
+			</a>
+		</Reveal>
+		<Reveal delay={200} class="contact-links">
+			<a href="https://github.com/DavidJChavez" target="_blank" rel="noreferrer">GitHub</a>
+			<span class="dot">·</span>
+			<a href="#">LinkedIn</a>
+			<span class="dot">·</span>
+			<a href="#">Twitter</a>
+			<span class="dot">·</span>
+			<a href="#">Read.cv</a>
+		</Reveal>
+		<div class="foot">
+			<span class="mono">© 2026 · davidjrc.com</span>
+			<span class="mono">Built quietly, in Astro.</span>
+		</div>
+	</div>
+</section>

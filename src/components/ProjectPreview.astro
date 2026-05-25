@@ -1,0 +1,70 @@
+---
+import type { ProjectPreviewKind } from '../data/portfolio';
+
+interface Props {
+	kind: ProjectPreviewKind;
+}
+
+const { kind } = Astro.props;
+
+const local = ['…', 'dist/', 'src/', 'Cargo.toml', 'README.md'];
+const remote = ['…', 'public_html/', 'logs/', 'index.html', 'robots.txt'];
+const tools = ['JWT', 'JSON', 'Hash', 'Regex', 'QR', 'Diff', 'Base64', 'UUID', 'Cron'];
+---
+
+{
+	kind === 'ftp' ? (
+		<div class="prev prev-ftp" aria-hidden="true">
+			<div class="prev-bar">
+				<i />
+				<i />
+				<i />
+				<span class="prev-bar-title mono">miel · ftp.davidjrc.com</span>
+			</div>
+			<div class="prev-panes">
+				<div class="prev-pane">
+					<div class="prev-pane-hd mono">
+						~/projects <span>local</span>
+					</div>
+					{local.map((f, i) => (
+						<div class={`prev-row mono ${i === 2 ? 'sel' : ''}`}>
+							<span class="prev-icon">{f.endsWith('/') ? '▸' : '·'}</span>
+							{f}
+						</div>
+					))}
+				</div>
+				<div class="prev-transfer">
+					<span>→</span>
+				</div>
+				<div class="prev-pane">
+					<div class="prev-pane-hd mono">
+						/home/davidjrc <span>remote</span>
+					</div>
+					{remote.map((f) => (
+						<div class="prev-row mono">
+							<span class="prev-icon">{f.endsWith('/') ? '▸' : '·'}</span>
+							{f}
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	) : (
+		<div class="prev prev-toolbox" aria-hidden="true">
+			<div class="prev-cmdk mono">
+				<span class="prev-cmdk-key">⌘K</span>
+				<span class="prev-cmdk-q">
+					jwt<i class="cursor-blink">▁</i>
+				</span>
+			</div>
+			<div class="prev-grid">
+				{tools.map((s, i) => (
+					<div class={`prev-tile ${i === 0 ? 'hit' : ''}`}>
+						<span class="mono">{s}</span>
+						<i />
+					</div>
+				))}
+			</div>
+		</div>
+	)
+}

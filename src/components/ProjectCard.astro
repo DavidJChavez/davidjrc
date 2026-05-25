@@ -1,0 +1,37 @@
+---
+import type { Project } from '../data/portfolio';
+import ProjectPreview from './ProjectPreview.astro';
+import Reveal from './Reveal.astro';
+
+interface Props {
+	project: Project;
+	index: number;
+}
+
+const { project, index } = Astro.props;
+const isExternal = project.href.startsWith('http');
+---
+
+<Reveal delay={index * 60} as="a" class="proj-card" href={project.href} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noreferrer' : undefined}>
+	<div class="proj-thumb">
+		<ProjectPreview kind={project.preview} />
+		<span class="proj-pill mono">{project.accentLabel}</span>
+	</div>
+	<div class="proj-body">
+		<div class="proj-head">
+			<span class="proj-n mono">{project.n}</span>
+			<h3 class="serif proj-title">{project.title}</h3>
+			<span class="proj-arrow" aria-hidden="true">↗</span>
+		</div>
+		<p class="proj-tag serif">
+			<em>{project.tagline}</em>
+		</p>
+		<p class="proj-body-copy">{project.body}</p>
+		<div class="proj-foot">
+			<ul class="proj-stack">
+				{project.stack.map((s) => <li class="mono">{s}</li>)}
+			</ul>
+			<span class="proj-year mono">{project.year}</span>
+		</div>
+	</div>
+</Reveal>

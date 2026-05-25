@@ -1,0 +1,27 @@
+---
+import { STACK } from '../data/portfolio';
+import Reveal from './Reveal.astro';
+---
+
+<section class="section stack" id="stack">
+	<div class="wrap">
+		<header class="section-hd">
+			<span class="eyebrow">Stack</span>
+			<h2 class="serif section-h">Tools I reach for <em>without thinking</em>.</h2>
+		</header>
+		<div class="stack-grid">
+			{
+				STACK.map((g, i) => (
+					<Reveal delay={i * 40} class="stack-col">
+						<div class="micro stack-label">{g.label}</div>
+						<ul>
+							{g.items.map((it) => (
+								<li class="mono">{it}</li>
+							))}
+						</ul>
+					</Reveal>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import '../styles/portfolio.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'David Rodriguez — Senior Fullstack Developer',
+	description = 'Senior fullstack developer. I build calm, well-mannered software — mostly in TypeScript, occasionally in Go.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+		<meta name="generator" content={Astro.generator} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta name="theme-color" content="#627942" />
+		<link rel="icon" type="image/svg+xml" href="/davidjrc_logo.svg" />
+		<title>{title}</title>
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem('theme');
+				const theme =
+					stored === 'light' || stored === 'dark'
+						? stored
+						: window.matchMedia('(prefers-color-scheme: dark)').matches
+							? 'dark'
+							: 'light';
+				document.documentElement.dataset.theme = theme;
+			})();
+		</script>
+	</head>
+	<body data-density="regular">
+		<slot />
+		<script>
+			import '../scripts/interactions.ts';
+		</script>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { NAV_LINKS } from '../data/portfolio';
+---
+
+<header class="nav">
+	<div class="wrap nav-inner">
+		<a href="#top" class="nav-logo" aria-label="David Rodriguez — inicio">
+			<Logo />
+		</a>
+		<nav class="nav-links" aria-label="Principal">
+			{
+				NAV_LINKS.map((link) => (
+					<a href={link.href}>{link.label}</a>
+				))
+			}
+		</nav>
+		<ThemeToggle />
+	</div>
+</header>
